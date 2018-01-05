@@ -76,29 +76,34 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Restaurant List</h1>
-      <h5>Search by cuisine:  
-        <select id="select-cuisine">  
-          <option value="1">American</option>
-          <option value="5">Bakery</option> 
-          <option value="25">Chinese</option> 
-          <option value="40">Fast Food</option> 
-          <option value="233">Ice Cream</option> 
-          <option value="148">Indian</option> 
-          <option value="55">Italian</option> 
-          <option value="60">Japanese</option> 
-          <option value="67">Korean</option> 
-          <option value="70">Mediterranean</option> 
-          <option value="73">Mexican</option> 
-          <option value="82">Pizza</option> 
-          <option value="304">Sandwich</option> 
-          <option value="83">Seafood</option> 
-          <option value="141">Steak</option> 
-          <option value="179">Tapas</option> 
-          <option value="95">Thai</option> 
-          <option value="308">Vegetarian</option>         
-        </select>
-        <button className="search" onClick={this.handleClick.bind(this)}>Go</button>
-      </h5>        
+      <div className="row">
+        <div className="col-6">
+          <h5>Search by cuisine:  
+            <select id="select-cuisine">  
+              <option value="1">American</option>
+              <option value="5">Bakery</option> 
+              <option value="25">Chinese</option> 
+              <option value="40">Fast Food</option> 
+              <option value="233">Ice Cream</option> 
+              <option value="148">Indian</option> 
+              <option value="55">Italian</option> 
+              <option value="60">Japanese</option> 
+              <option value="67">Korean</option> 
+              <option value="70">Mediterranean</option> 
+              <option value="73">Mexican</option> 
+              <option value="82">Pizza</option> 
+              <option value="304">Sandwich</option> 
+              <option value="83">Seafood</option> 
+              <option value="141">Steak</option> 
+              <option value="179">Tapas</option> 
+              <option value="95">Thai</option> 
+              <option value="308">Vegetarian</option>         
+            </select>
+            <button className="search" onClick={this.handleClick.bind(this)}>Go</button>
+          </h5>  
+        </div>
+        <div className="col-6"/> 
+      </div>    
       <div className="row">
         <div className="col-6 list">
           <h3>Top {this.state.listType}Restaurants in SF</h3>

@@ -12,7 +12,9 @@ const ListItem = ({restaurant, addRestaurant}) => (
       <button onClick={() => addRestaurant(restaurant)}>Save to my List</button>
     </div>
     <div className="col-4">
-      <img src={restaurant.thumb} height="100" width="100"/>
+      {restaurant.thumb ? 
+        <img src={restaurant.thumb} height="100" width="100"/> : null
+      }
       <div><a href={restaurant.menu_url} target="_blank">Link to menu</a></div>
       <div><a href={restaurant.photos_url} target="_blank">Link to more photos</a></div>
     </div>
