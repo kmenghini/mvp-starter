@@ -1,8 +1,10 @@
 import React from 'react';
 
-const ListItem = (props) => (
+const ListItem = ({restaurant}) => (
   <div>
-    { props.item.description }
+    <a href={restaurant.url}>{restaurant.name}</a>
+    <div>{restaurant.location_address}</div>
+    <img src={restaurant.thumb}/>
   </div>
 )
 

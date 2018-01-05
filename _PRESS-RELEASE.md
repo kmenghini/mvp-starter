@@ -18,18 +18,23 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  SF Restaurant Search
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Search for restaurants in SF and save your favorites!
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  SF Restaurant Search helps hungry people find the perfect place to eat. It will find a place that matches exactly what you're craving, and show you pictures of it to help you decide, too. If you see more than one place that you like, use our handy save feature to store it for next time!
 
 ## Problem ##
   > Describe the problem your product solves.
+  SF Restaurant Search helps solve the problem of deciding where to eat.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.

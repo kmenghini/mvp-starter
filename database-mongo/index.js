@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/restaurantFinder');
 
 var db = mongoose.connection;
 
@@ -11,15 +11,29 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+var restaurantSchema = mongoose.Schema({
+  _id: Number,
+  name: String,
+  url: String,
+  location_address: String,
+  thumb: String,
+  menu_url: String,
+  user_rating: String,
+  cuisines: String,
+  photos_url: String
 });
 
-var Item = mongoose.model('Item', itemSchema);
+var Restaurant = mongoose.model('Restaurant', restaurantSchema);
+
+var addRestaurant = function(restaurantObj) {
+  console.log('in addRestaurant in db')
+  var newRestaurant = Restaurant.create(restaurantObj);
+  console.log(`restaurant ${restaurantObj.name} in db`);
+}
 
 var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
+  console.log('in selectAll in db')
+  Restaurant.find({}, function(err, items) {
     if(err) {
       callback(err, null);
     } else {
@@ -29,3 +43,4 @@ var selectAll = function(callback) {
 };
 
 module.exports.selectAll = selectAll;
+module.exports.addRestaurant = addRestaurant;
