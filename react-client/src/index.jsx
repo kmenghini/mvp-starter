@@ -61,6 +61,9 @@ class App extends React.Component {
 
   //when button is clicked, use value of select element and make call to /search api
   handleClick() {
+    this.setState({
+      topRestaurants: [{name: 'loading...'}]
+    })
     var searchCuisine = $("#select-cuisine").val();
     var cuisineName = $("option[value=" + searchCuisine + "]").text();
     this.setState({
@@ -80,7 +83,7 @@ class App extends React.Component {
         <div className="col-6">
           <h5>Search by cuisine:  
             <select id="select-cuisine">  
-              <option value="1">American</option>
+              <option value="168">American</option>
               <option value="5">Bakery</option> 
               <option value="25">Chinese</option> 
               <option value="40">Fast Food</option> 
@@ -105,11 +108,12 @@ class App extends React.Component {
         <div className="col-6"/> 
       </div>    
       <div className="row">
-        <div className="col-6 list">
+        <div className="col-7 list">
           <h3>Top {this.state.listType}Restaurants in SF</h3>
           <TopList restaurants={this.state.topRestaurants} addRestaurant={this.addRestaurant.bind(this)}/>
         </div>
-        <div className="col-6 list">
+        <div className="col-1"/>
+        <div className="col-4 list">
           <h3>Your Saved Restaurants</h3>
           <SavedList restaurants={this.state.savedRestaurants} removeRestaurant={this.removeRestaurant.bind(this)}/>
         </div>

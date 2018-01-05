@@ -1,17 +1,30 @@
 .list {
   border: 2px solid;
   padding: 15px;
-  border-radius: 3px;  
+  border-radius: 3px; 
+  background-color: white; 
 }
 
 .list-item {
-  border: 1px solid;
-  margin: 5px 0;
+  border: 1px solid rgba(212, 211, 211, 0.685);
+  margin: 10px 0;
   background-color: rgb(228, 228, 228);
-  padding: 15px 0;
+  padding: 5px 0;
   border-radius: 3px;
 }
 
 h1, h3 {
   text-align: center;
+}
+
+.saved-item {
+  font-size: 85%;
+}
+
+.saved-item h4 {
+  font-size: 20px;
+}
+
+.body-color {
+  background-color: rgba(155, 46, 46, 0.623);
 }

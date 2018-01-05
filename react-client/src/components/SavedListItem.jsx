@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ListItem = ({restaurant, removeRestaurant}) => (
-  <div className="row list-item">
+  <div className="row list-item saved-item">
     <div className="col-6">
       <h4><a href={restaurant.url} target="_blank">{restaurant.name}</a></h4>
       <div>{restaurant.location_address}</div>
@@ -13,7 +13,7 @@ const ListItem = ({restaurant, removeRestaurant}) => (
     </div>
     <div className="col-4">
       {restaurant.thumb ? 
-        <img src={restaurant.thumb} height="100" width="100"/> : null
+        <img src={restaurant.thumb} height="80" width="80"/> : null
       }
       <div><a href={restaurant.menu_url} target="_blank">Link to menu</a></div>
       <div><a href={restaurant.photos_url} target="_blank">Link to more photos</a></div>
