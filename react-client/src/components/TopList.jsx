@@ -1,10 +1,10 @@
 import React from 'react';
-import ListItem from './ListItem.jsx';
+import TopListItem from './TopListItem.jsx';
 
 const List = ({restaurants, addRestaurant}) => (
   <div>
     There are { restaurants.length } items.
-    { restaurants.map(restaurant => <ListItem restaurant={restaurant} addRestaurant={addRestaurant}/>)}
+    { restaurants.map(restaurant => <TopListItem restaurant={restaurant} addRestaurant={addRestaurant}/>)}
   </div>
 )
 

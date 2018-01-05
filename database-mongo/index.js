@@ -42,5 +42,14 @@ var selectAll = function(callback) {
   });
 };
 
+//bug here**** (probably)
+var removeRestaurant = function(restaurantObj) {
+  console.log('in removeRestaurant in db', restaurantObj)
+  console.log({'_id': parseInt(restaurantObj._id)})
+  Restaurant.deleteOne({'_id': parseInt(restaurantObj._id)});
+  console.log(`restaurant ${restaurantObj.name} removed from db`);
+}
+
 module.exports.selectAll = selectAll;
 module.exports.addRestaurant = addRestaurant;
+module.exports.removeRestaurant = removeRestaurant;

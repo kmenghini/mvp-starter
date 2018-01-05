@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import List from './components/List.jsx';
+import SavedList from './components/SavedList.jsx';
+import TopList from './components/TopList.jsx';
 
 import sampleData from '../../example-restaurant-data.js';
 
@@ -51,17 +52,23 @@ class App extends React.Component {
     });
   }
 
+  removeRestaurant(restaurantInput) {
+    $.post('/removeRestaurant', {restaurant: restaurantInput}, () => {
+      this.getSavedRestaurantsFromDb();
+    });
+  }
+
   render () {
     return (<div>
       <h1>Restaurant List</h1>
       <div className="row">
         <div className="col-6 list">
           <h3>Top Restaurants in SF</h3>
-          <List restaurants={this.state.topRestaurants} addRestaurant={this.addRestaurant.bind(this)}/>
+          <TopList restaurants={this.state.topRestaurants} addRestaurant={this.addRestaurant.bind(this)}/>
         </div>
         <div className="col-6 list">
           <h3>Your Saved Restaurants</h3>
-          <List restaurants={this.state.savedRestaurants}/>
+          <SavedList restaurants={this.state.savedRestaurants} removeRestaurant={this.removeRestaurant.bind(this)}/>
         </div>
       </div>
     </div>)

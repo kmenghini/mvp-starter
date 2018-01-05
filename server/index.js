@@ -60,6 +60,13 @@ app.post('/savedRestaurants', function(req,res) {
   res.sendStatus(200);
 })
 
+//post request to a restaurant into db
+app.post('/removeRestaurant', function(req,res) {
+  console.log('in post request in server...')
+  db.removeRestaurant(req.body.restaurant);
+  res.sendStatus(200);
+})
+
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');
