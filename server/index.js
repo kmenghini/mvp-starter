@@ -63,8 +63,14 @@ app.post('/savedRestaurants', function(req,res) {
 //post request to a restaurant into db
 app.post('/removeRestaurant', function(req,res) {
   console.log('in post request in server...')
-  db.removeRestaurant(req.body.restaurant);
-  res.sendStatus(200);
+  db.removeRestaurant(req.body.restaurant, (err, data) => {
+    if(err) {
+      res.sendStatus(500);
+    } else {
+      res.json(data);
+    }
+  });
+  // res.sendStatus(200);
 })
 
 

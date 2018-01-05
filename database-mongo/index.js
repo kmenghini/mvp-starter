@@ -43,10 +43,16 @@ var selectAll = function(callback) {
 };
 
 //bug here**** (probably)
-var removeRestaurant = function(restaurantObj) {
-  console.log('in removeRestaurant in db', restaurantObj)
+var removeRestaurant = function(restaurantObj, callback) {
+  console.log('in removeRestaurant in db')
   console.log({'_id': parseInt(restaurantObj._id)})
-  Restaurant.deleteOne({'_id': parseInt(restaurantObj._id)});
+  Restaurant.deleteOne({'_id': parseInt(restaurantObj._id)}, function(err, items) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, items)
+    }
+  });
   console.log(`restaurant ${restaurantObj.name} removed from db`);
 }
 
