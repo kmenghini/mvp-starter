@@ -1,10 +1,21 @@
 import React from 'react';
 
-const ListItem = ({restaurant}) => (
-  <div>
-    <a href={restaurant.url}>{restaurant.name}</a>
-    <div>{restaurant.location_address}</div>
-    <img src={restaurant.thumb}/>
+const ListItem = ({restaurant, addRestaurant}) => (
+  <div className="row list-item">
+    <div className="col-6">
+      <h4><a href={restaurant.url} target="_blank">{restaurant.name}</a></h4>
+      <div>{restaurant.location_address}</div>
+      <div>User Rating: {restaurant.user_rating}</div>
+      <div>Cuisines: {restaurant.cuisines}</div>
+    </div>
+    <div className="col-2">
+      <button onClick={() => addRestaurant(restaurant)}>Save to my List</button>
+    </div>
+    <div className="col-4">
+      <img src={restaurant.thumb} height="100" width="100"/>
+      <div><a href={restaurant.menu_url} target="_blank">Link to menu</a></div>
+      <div><a href={restaurant.photos_url} target="_blank">Link to more photos</a></div>
+    </div>
   </div>
 )
 

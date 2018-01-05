@@ -16,14 +16,21 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.addRestaurants(sampleData.exampleRestaurantDataLong);
-    //get request to api
-    //set state for top restaurants
-    $.get('/topRestaurants', function(err, data) {
-      console.log('get top restaurants', err, data);
+    this.getTopRestaurantsFromApi();
+    this.getSavedRestaurantsFromDb();
+  }
+  
+  //get request to api and set state for top restaurants
+  getTopRestaurantsFromApi() {
+    $.get('/topRestaurants', (data) => {
+      this.setState({
+        topRestaurants: data
+      });
     })
+  }
 
-    //then get request from db for saved restaurants
+  //then get request from db for saved restaurants
+  getSavedRestaurantsFromDb() {
     $.ajax({
       url: '/savedRestaurants', 
       success: (data) => {
@@ -35,19 +42,28 @@ class App extends React.Component {
         console.log('err', err);
       }
     });
-  }
+  }    
 
-  addRestaurants(restaurantsArr) {
-    console.log('in addRestaurants')
-    $.post('/savedRestaurants', {restaurants: restaurantsArr}, function(err, data) {
-      console.log('post complete',err, data);
+  //when restaurant is saved, add to db
+  addRestaurant(restaurantInput) {
+    $.post('/savedRestaurants', {restaurant: restaurantInput}, () => {
+      this.getSavedRestaurantsFromDb();
     });
   }
 
   render () {
     return (<div>
-      <h1>Item List</h1>
-      <List restaurants={this.state.savedRestaurants}/>
+      <h1>Restaurant List</h1>
+      <div className="row">
+        <div className="col-6 list">
+          <h3>Top Restaurants in SF</h3>
+          <List restaurants={this.state.topRestaurants} addRestaurant={this.addRestaurant.bind(this)}/>
+        </div>
+        <div className="col-6 list">
+          <h3>Your Saved Restaurants</h3>
+          <List restaurants={this.state.savedRestaurants}/>
+        </div>
+      </div>
     </div>)
   }
 }

@@ -1,11 +1,10 @@
 import React from 'react';
 import ListItem from './ListItem.jsx';
 
-const List = ({restaurants}) => (
+const List = ({restaurants, addRestaurant}) => (
   <div>
-    <h4> List Component </h4>
     There are { restaurants.length } items.
-    { restaurants.map(restaurant => <ListItem restaurant={restaurant}/>)}
+    { restaurants.map(restaurant => <ListItem restaurant={restaurant} addRestaurant={addRestaurant}/>)}
   </div>
 )
 

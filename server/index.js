@@ -24,32 +24,39 @@ app.get('/savedRestaurants', function (req, res) {
 //use this get request to to api call for best-rated from api
 app.get('/topRestaurants', function(req,res) {
   console.log('in top get request in server...')
-  // axios({
-  //   method: 'get',
-  //   url: ''
-  // });
-  
+  axios({
+    method:'get',
+    url:'https://developers.zomato.com/api/v2.1/location_details?entity_id=306&entity_type=city',
+    headers: {
+      'user-key': '9d4ae3b783fa965ed172f7aa74d97a7c'
+    }
+  })
+  .then(function(response) {
+    var restaurants = response.data.best_rated_restaurant;
+    var formattedRestaurants = restaurants.map(topRestaurant => {
+      return({
+        _id: parseInt(topRestaurant.restaurant.R.res_id),
+        name: topRestaurant.restaurant.name,
+        url: topRestaurant.restaurant.url,
+        location_address: topRestaurant.restaurant.location.address,
+        thumb: topRestaurant.restaurant.thumb,
+        menu_url: topRestaurant.restaurant.menu_url,
+        user_rating: topRestaurant.restaurant.user_rating.aggregate_rating,
+        cuisines: topRestaurant.restaurant.cuisines,
+        photos_url: topRestaurant.restaurant.photos_url
+      })
+    })
+    res.json(formattedRestaurants);
+  })
+  .catch(function(error) {
+    console.log('error in api request', error);
+  })
 })
 
-//post request to insert multiple restaurants into db
+//post request to a restaurant into db
 app.post('/savedRestaurants', function(req,res) {
   console.log('in post request in server...')
-  var newRestaurants = req.body.restaurants;
-  //for each restaurant, format and then add to db
-  newRestaurants.forEach(newRestaurant => {
-    var formattedRestaurant = {
-      _id: parseInt(newRestaurant.restaurant.R.res_id),
-      name: newRestaurant.restaurant.name,
-      url: newRestaurant.restaurant.url,
-      location_address: newRestaurant.restaurant.location.address,
-      thumb: newRestaurant.restaurant.thumb,
-      menu_url: newRestaurant.restaurant.menu_url,
-      user_rating: newRestaurant.restaurant.user_rating.aggregate_rating,
-      cuisines: newRestaurant.restaurant.cuisines,
-      photos_url: newRestaurant.restaurant.photos_url
-    }
-    db.addRestaurant(formattedRestaurant);
-  })
+  db.addRestaurant(req.body.restaurant);
   res.sendStatus(200);
 })
 
