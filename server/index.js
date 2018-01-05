@@ -53,6 +53,43 @@ app.get('/topRestaurants', function(req,res) {
   })
 })
 
+//use this get request to to api call for different cuisine
+app.post('/cuisine', function(req,res) {
+  console.log('in cuisine get request in server...')
+  axios({
+    method:'get',
+    url:'https://developers.zomato.com/api/v2.1/search?entity_id=306&entity_type=city',
+    headers: {
+      'user-key': '9d4ae3b783fa965ed172f7aa74d97a7c'
+    },
+    params: {
+      'cuisines':req.body.cuisine,
+      'sort': 'rating',
+      'order': 'desc'
+    }
+  })
+  .then(function(response) {
+    var restaurants = response.data.restaurants;
+    var formattedRestaurants = restaurants.map(topRestaurant => {
+      return({
+        _id: parseInt(topRestaurant.restaurant.R.res_id),
+        name: topRestaurant.restaurant.name,
+        url: topRestaurant.restaurant.url,
+        location_address: topRestaurant.restaurant.location.address,
+        thumb: topRestaurant.restaurant.thumb,
+        menu_url: topRestaurant.restaurant.menu_url,
+        user_rating: topRestaurant.restaurant.user_rating.aggregate_rating,
+        cuisines: topRestaurant.restaurant.cuisines,
+        photos_url: topRestaurant.restaurant.photos_url
+      })
+    })
+    res.json(formattedRestaurants);
+  })
+  .catch(function(error) {
+    console.log('error in api request', error);
+  })
+})
+
 //post request to a restaurant into db
 app.post('/savedRestaurants', function(req,res) {
   console.log('in post request in server...')

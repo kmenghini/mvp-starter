@@ -42,7 +42,6 @@ var selectAll = function(callback) {
   });
 };
 
-//bug here**** (probably)
 var removeRestaurant = function(restaurantObj, callback) {
   console.log('in removeRestaurant in db')
   console.log({'_id': parseInt(restaurantObj._id)})
